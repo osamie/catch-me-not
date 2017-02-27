@@ -1,0 +1,24 @@
+<project default="main">
+	<target name="clean">
+		<delete dir="bin"/>
+	</target>
+	<target name="compile">
+		<mkdir dir="bin"/>
+		<javac srcdir="src" destdir="bin"/>
+	</target>
+
+	<target name="jar" depends="compile">
+		<mkdir dir="bin/jar"/>
+		<jar destfile="bin/jar/CatchMeNot.jar" basedir="bin/Model">
+			<manifest>
+				<attribute name="Main-Class" value="Model.GraphicalGame"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="run" depends="jar">
+		<java jar="build/jar/CatchMeNot.jar" fork="true"/>
+	</target>
+
+	<target name="main" depends="clean,run"/>
+</project>
